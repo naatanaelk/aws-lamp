@@ -1,0 +1,8 @@
+# AWS variables
+
+instance_type: "t2.micro"
+region: "us-east-1"
+image_id: "ami-4fffc834"
+key_pair: "jenkins-master"
+security_group: "ssh"
+volume_size: 16

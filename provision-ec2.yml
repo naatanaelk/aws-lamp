@@ -1,0 +1,33 @@
+- name: Create EC2 instances for LAMP stack
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+  - group_vars/common
+
+  tasks:
+  - name: Create web servers
+    ec2:
+      keypair: "{{ key_pair }}"
+      group: "{{ security_group }}"
+      type: "{{ instance_type }}"
+      image: "{{ image_id }}"
+      region: "{{ region }}"
+      instance_tags: "{'ansible_group':'webservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'web'}"
+      count: 2
+      volumes:
+      - device_name: /dev/xvda
+        device_type: gp2
+        volume_size: "{{ volume_size }}"
+        delete_on_termination: true
+      wait: true
+    register: ec2
+
+  - name: Wait for the instances to boot by checking the ssh port
+    wait_for: 
+      host: "{{ item.public_dns_name }}"
+      port: 22 
+      state: started
+    with_items: "{{ ec2.instances }}"
+    when: ec2 | changed
