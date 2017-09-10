@@ -6,3 +6,7 @@ image_id: "ami-4fffc834"
 key_pair: "jenkins-master"
 security_group: "ssh"
 volume_size: 16
+
+# NTP server
+
+ntp_server: 0.pool.ntp.org

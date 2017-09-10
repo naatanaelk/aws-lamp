@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars_files:
-  - group_vars/common
+  - group_vars/all
 
   tasks:
   - name: Create web servers
@@ -48,7 +48,7 @@
       type: "{{ instance_type }}"
       image: "{{ image_id }}"
       region: "{{ region }}"
-      instance_tags: "{'ansible_group':'lbservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'web'}"
+      instance_tags: "{'ansible_group':'lbservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'lb'}"
       count: 1
       volumes:
       - device_name: /dev/xvda

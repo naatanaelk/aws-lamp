@@ -1,0 +1,23 @@
+---
+# tasks file for common
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+  become: yes
+
+- name: Install NTP and git
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ntp
+    - git
+  become: yes
+
+- name: Configure NTP
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf 
+  notify: Restart NTP
+  become: yes
