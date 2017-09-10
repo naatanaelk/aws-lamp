@@ -24,6 +24,40 @@
       wait: true
     register: ec2
 
+  - name: Create DB server
+    ec2:
+      keypair: "{{ key_pair }}"
+      group: "{{ security_group }}"
+      type: "{{ instance_type }}"
+      image: "{{ image_id }}"
+      region: "{{ region }}"
+      instance_tags: "{'ansible_group':'dbservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'db'}"
+      count: 1
+      volumes:
+      - device_name: /dev/xvda
+        device_type: gp2
+        volume_size: "{{ volume_size }}"
+        delete_on_termination: true
+      wait: true
+    register: ec2
+
+  - name: Create LB server
+    ec2:
+      keypair: "{{ key_pair }}"
+      group: "{{ security_group }}"
+      type: "{{ instance_type }}"
+      image: "{{ image_id }}"
+      region: "{{ region }}"
+      instance_tags: "{'ansible_group':'lbservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'web'}"
+      count: 1
+      volumes:
+      - device_name: /dev/xvda
+        device_type: gp2
+        volume_size: "{{ volume_size }}"
+        delete_on_termination: true
+      wait: true
+    register: ec2
+
   - name: Wait for the instances to boot by checking the ssh port
     wait_for: 
       host: "{{ item.public_dns_name }}"
