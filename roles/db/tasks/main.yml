@@ -25,6 +25,15 @@
     enabled: yes
   become: yes
 
+- name: Set root password
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    check_implicit_admin: true
+
+- name: Create ~/.my.cnf file for creds
+  template: src=my.cnf.j2 dest=/home/centos/.my.cnf
+
 - name: Create Application Database
   mysql_db: 
     name: "{{ db_name }}"

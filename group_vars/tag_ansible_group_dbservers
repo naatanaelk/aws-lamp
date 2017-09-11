@@ -1,5 +1,6 @@
 # Variables for DB servers
 
+mysql_root_password: Password1
 db_name: appdb
 db_user: appuser
 db_user_password: Password1
