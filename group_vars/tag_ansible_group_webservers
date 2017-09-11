@@ -1,0 +1,2 @@
+
+hostname: "{{ ec2_private_ip_address }}"
