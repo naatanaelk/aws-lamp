@@ -6,13 +6,14 @@
     state: latest
   become: yes
 
-- name: Install NTP and git
+- name: Install NTP, git and EPEL
   yum:
     name: "{{ item }}"
     state: present
   with_items:
     - ntp
     - git
+    - epel-release
   become: yes
 
 - name: Configure NTP
