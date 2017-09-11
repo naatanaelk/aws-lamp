@@ -10,3 +10,7 @@
   roles:
   - db
   
+- hosts: tag_ansible_group_lbservers
+  roles:
+  - lb
+  

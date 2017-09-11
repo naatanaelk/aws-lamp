@@ -1,0 +1,5 @@
+# HAProxy variables
+
+listenport: 8080
+
+balance: roundrobin
