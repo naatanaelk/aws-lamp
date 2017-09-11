@@ -6,3 +6,10 @@
     name: ntpd
     state: restarted
   become: yes
+
+- name: restart iptables
+  service:
+    name: iptables
+    state: restarted
+  become: yes
+  
