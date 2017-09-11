@@ -1,0 +1,18 @@
+---
+# tasks file for web
+- name: Install Apache
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - httpd
+    - php
+    - php-mysql
+  become: yes
+
+- name: Start Apache
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+  become: yes

@@ -1,3 +1,11 @@
 - hosts: all
   roles:
   - common
+
+- hosts: tag_ansible_group_webservers
+  roles:
+  - web
+
+- hosts: tag_ansible_group_dbservers
+  roles:
+  - db

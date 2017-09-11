@@ -1,0 +1,5 @@
+# Variables for DB servers
+
+db_name: appdb
+db_user: appuser
+db_user_password: Password1

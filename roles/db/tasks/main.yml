@@ -1,0 +1,39 @@
+---
+# tasks file for db
+
+- name: Install MySQL
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mysql-server
+    - mysql-devel
+    - python-devel
+    - python-pip
+    - gcc
+  become: yes
+
+- name: Install Python MySQLDB module
+  pip:
+    name: MySQL-python
+  become: yes
+
+- name: Start MySQL
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Create Application Database
+  mysql_db: 
+    name: "{{ db_name }}"
+    state: present
+
+- name: Create Application DB User
+  mysql_user: 
+    name: "{{ db_user }}"
+    password: "{{ db_user_password }}" 
+    priv: '*.*:ALL' 
+    host: '%' 
+    state: present
