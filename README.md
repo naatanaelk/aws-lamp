@@ -1,4 +1,4 @@
-### AWS-LAMP: Playbooks to provision a basic LAMP stack on AWS
+# AWS-LAMP: Playbooks to provision a basic LAMP stack on AWS
 
 There are two playbooks you need to run:
 - provision-ec2.yml
