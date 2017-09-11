@@ -17,7 +17,7 @@
       instance_tags: "{'ansible_group':'webservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'web'}"
       count: 2
       volumes:
-      - device_name: /dev/xvda
+      - device_name: /dev/sda1
         device_type: gp2
         volume_size: "{{ volume_size }}"
         delete_on_termination: true
@@ -34,7 +34,7 @@
       instance_tags: "{'ansible_group':'dbservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'db'}"
       count: 1
       volumes:
-      - device_name: /dev/xvda
+      - device_name: /dev/sda1
         device_type: gp2
         volume_size: "{{ volume_size }}"
         delete_on_termination: true
@@ -51,7 +51,7 @@
       instance_tags: "{'ansible_group':'lbservers', 'type':'{{ instance_type }}', 'group':'{{ security_group }}', 'Name':'lb'}"
       count: 1
       volumes:
-      - device_name: /dev/xvda
+      - device_name: /dev/sda1
         device_type: gp2
         volume_size: "{{ volume_size }}"
         delete_on_termination: true
