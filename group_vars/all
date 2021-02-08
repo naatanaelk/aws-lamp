@@ -6,6 +6,8 @@ image_id: "ami-82cfb894"
 key_pair: "jenkins-master"
 security_group: "ssh"
 volume_size: 16
+aws_access_key: ""
+aws_secret_key: ""
 
 # NTP server
 
