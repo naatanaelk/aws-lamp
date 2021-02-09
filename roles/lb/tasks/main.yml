@@ -1,7 +1,7 @@
 # Install and configure HAProxy
 
 - name: Install haproxy
-  apt:
+  yum:
     name: haproxy
     state: present
   become: yes
