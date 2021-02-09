@@ -1,7 +1,7 @@
 ---
 # tasks file for web
 - name: Install Apache
-  yum:
+  apt:
     name: "{{ item }}"
     state: present
   with_items:

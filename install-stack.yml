@@ -2,15 +2,24 @@
   roles:
   - common
 
-- hosts: tag_ansible_group_webservers
+- hosts: web
+  vars_files:
+  - group_vars/all
+  - group_vars/tag_ansible_group_webservers
   roles:
   - web
 
-- hosts: tag_ansible_group_dbservers
+- hosts: db
+  vars_files:
+  - group_vars/all
+  - group_vars/tag_ansible_group_dbservers
   roles:
   - db
   
-- hosts: tag_ansible_group_lbservers
+- hosts: lb
+  vars_files:
+  - group_vars/all
+  - group_vars/tag_ansible_group_lbservers
   roles:
   - lb
   

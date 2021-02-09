@@ -1,13 +1,13 @@
 ---
 # tasks file for common
 - name: Update all packages
-  yum:
+  apt:
     name: '*'
     state: latest
   become: yes
 
 - name: Install NTP, git and EPEL
-  yum:
+  apt:
     name: "{{ item }}"
     state: present
   with_items:
